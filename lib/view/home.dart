@@ -1,10 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
 
-
-import '../model/model_class.dart';
 import '../serviece/category_provider.dart';
 
 

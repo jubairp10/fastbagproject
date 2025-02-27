@@ -2,7 +2,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 //
-// import '../view/Categorys.dart';
+// import '../view/Cartpage.dart';
 // import '../view/Profile.dart';
 // import '../view/shop.dart';
 //
@@ -66,7 +66,7 @@ import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_not
 import 'package:fastbagproject/view/home.dart';
 import 'package:flutter/material.dart';
 
-import '../view/Categorys.dart';
+import '../view/Cartpage.dart';
 import '../view/Profile.dart';
 import '../view/shop.dart';
 
@@ -82,8 +82,8 @@ class _BottomNavExampleState extends State<BottomNavExample> {
 
   final List<Widget> _pages = [
     HomeScreen(),
-    Shop(),
-    Categorys(),
+    HomeScreen(),
+    CartPage(),
     Account(),
   ];
 
