@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         home: isLoggedIn ? HomeScreen() : Splashsceen(),
         routes: {
           '/login': (context) => LoginScreen(),
-          '/otp': (context) => OtpVerificationScreen(mobileNumber: ""),
+          '/otp': (context) => OtpVerificationScreen(mobileNumber: 'mobile_number'),
           '/home': (context) => HomeScreen(),
         },
       ),

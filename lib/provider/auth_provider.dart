@@ -29,6 +29,7 @@ class AuthProvider with ChangeNotifier {
       );
 
       print("Registration Response: ${response.body}");
+      print("OTP Sent Status: $_isOtpSent");
 
       if (response.statusCode == 200) {
         _isOtpSent = true;
@@ -50,15 +51,18 @@ class AuthProvider with ChangeNotifier {
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'mobile_number': mobile, 'otp': otp}),
     );
-
+    print("OTP Verification Response: ${response.body}");
     if (response.statusCode == 200) {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('user_mobile', mobile);
-      notifyListeners(); // This triggers UI rebuild
+      await prefs.setString("user_mobile",mobile);
+      _isVerified = true; // ✅ Mark as verified
+      notifyListeners();
+      print("User verified successfully"); // ✅ Notify listeners
     } else {
       throw Exception('Invalid OTP');
     }
   }
+
 
 
   void startResendTimer() {

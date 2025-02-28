@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pinput/pinput.dart';
 import '../provider/auth_provider.dart';
+import 'home.dart';
 
 
 class OtpVerificationScreen extends StatefulWidget {
@@ -39,16 +40,30 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   void _verifyOtp() {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     authProvider.verifyOtp(widget.mobileNumber, _otpController.text.trim()).then((_) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login Successful')),
-      );
-      Navigator.pushReplacementNamed(context, '/home'); // ✅ Redirect to Home
+      print("Verification status: ${authProvider.isVerified}");
+      if (authProvider.isVerified) { // Ensure user is verified before navigation
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login Successful')),
+        );
+        print("Navigating to HomeScreen: ${authProvider.isVerified}");
+
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+                (route) => false,
+        );
+      }else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('OTP verification failed.')),
+        );
+      }
     }).catchError((error) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Invalid OTP')),
       );
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +80,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               SizedBox(height: 5),
               const SizedBox(height: 20),
               Pinput(
-                length: 4,
+                length: 6,
                 controller: _otpController,
                 focusNode: _otpFocusNode, // ✅ Attach focus node
                 onCompleted: (pin) => _verifyOtp(),

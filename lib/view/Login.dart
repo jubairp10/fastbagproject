@@ -29,10 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     authProvider.registerUser(mobile).then((_) {
+      print("Navigating to OTP screen with mobile: $mobile");
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => OtpVerificationScreen(mobileNumber: 'mobile_number'),
+          builder: (context) => OtpVerificationScreen(mobileNumber: mobile),
         ),
       );
     }).catchError((error) {
@@ -44,65 +45,70 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: SafeArea(
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              const SizedBox(height: 150),
+               SizedBox(height: 100),
               Center(
                 child: Text(
                   'Login or create an account',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
+              SizedBox(height: 50),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IntlPhoneField(
+                  controller: _phoneController,
+                  decoration: InputDecoration(labelText: 'Your Phone Number'),
+                  initialCountryCode: 'IN',
+                  onChanged: (phone) {
+                    _selectedCountryCode = phone.countryCode;
+                  },
+                ),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavExample()));
+                },
+                child: const Text('Continue'),
+              ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      IntlPhoneField(
-                        controller: _phoneController,
-                        decoration: InputDecoration(labelText: 'Your Phone Number'),
-                        initialCountryCode: 'IN',
-                        onChanged: (phone) {
-                          _selectedCountryCode = phone.countryCode;
-                        },
-                      ),
-                      const SizedBox(height: 30),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavExample()));
-                        },
-                        child: const Text('Continue'),
-                      ),
-                      Spacer(), // Pushes the following content to the bottom
-                      Text('By clicking "Continue" you agree with', style: TextStyle(fontSize: 16, color: Colors.grey)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Our ', style: TextStyle(fontSize: 16, color: Colors.grey)),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text('Terms and Conditions', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      InkWell(
-                        onTap: _sendOtp,
-                        child: Container(
-                          height: 50,
-                          width: double.infinity,
-                          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                          decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(20)),
-                          child: Center(child: Text('Continue', style: TextStyle(fontSize: 16, color: Colors.white))),
+                child: Column(
+                  children: [
+      
+                    Spacer(), // Pushes the following content to the bottom
+                    Text('By clicking "Continue" you agree with', style: TextStyle(fontSize: 16, color: Colors.grey)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Our ', style: TextStyle(fontSize: 16, color: Colors.grey)),
+                        TextButton(
+                          onPressed: () {
+
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpVerificationScreen(mobileNumber: 'mobile_number')));
+                          },
+                          child: Text('Terms and Conditions', style: TextStyle(fontSize: 16, color: Colors.black)),
                         ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    InkWell(
+                      onTap: _sendOtp,
+                      child: Container(
+                        height: 50,
+                        width: double.infinity,
+                        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                        child: Center(child: Text('Continue', style: TextStyle(fontSize: 16, color: Colors.white))),
                       ),
-                      const SizedBox(height: 24),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
                 ),
               ),
             ],
