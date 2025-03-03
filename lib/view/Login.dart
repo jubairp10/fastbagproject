@@ -1,11 +1,11 @@
 
 import 'package:fastbagproject/view/home.dart';
+import 'package:fastbagproject/view/widget/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import '../provider/auth_provider.dart';
+import '../model/service/auth_provider.dart';
 
-import '../widget/bottom_nav_bar.dart';
 import 'otp_verify.dart';
 
 class LoginScreen extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pinput/pinput.dart';
-import '../provider/auth_provider.dart';
+import '../model/service/auth_provider.dart';
 import 'home.dart';
 
 

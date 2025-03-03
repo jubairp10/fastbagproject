@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../serviece/category_provider.dart';
+import '../model/service/category_provider.dart';
 
 
 

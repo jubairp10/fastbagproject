@@ -1,5 +1,5 @@
-import 'package:fastbagproject/provider/auth_provider.dart';
-import 'package:fastbagproject/serviece/category_provider.dart';
+import 'package:fastbagproject/model/service/auth_provider.dart';
+import 'package:fastbagproject/model/service/category_provider.dart';
 import 'package:fastbagproject/view/Login.dart';
 import 'package:fastbagproject/view/home.dart';
 import 'package:fastbagproject/view/otp_verify.dart';

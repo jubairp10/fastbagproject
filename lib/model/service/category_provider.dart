@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 
-import '../model/model_class.dart';
+import '../../view_model/model_class.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryProvider extends ChangeNotifier {
