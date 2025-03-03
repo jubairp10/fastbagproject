@@ -1,14 +1,7 @@
 
+import 'package:fastbagproject/view_model/category_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../model/service/category_provider.dart';
-
-
-
-
-
-
 
 class HomeScreen extends StatelessWidget {
   final List<Map<String, String>> topCategories = [
@@ -82,7 +75,7 @@ class HomeScreen extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(left: 30,right: 30),
-                child: Consumer<CategoryProvider>(
+                child: Consumer<CategoryViewModel>(
                   builder: (context, provider, child) {
                     if (provider.isLoading) {
                       return Center(child: CircularProgressIndicator());

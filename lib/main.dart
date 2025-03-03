@@ -4,6 +4,8 @@ import 'package:fastbagproject/view/Login.dart';
 import 'package:fastbagproject/view/home.dart';
 import 'package:fastbagproject/view/otp_verify.dart';
 import 'package:fastbagproject/view/splashsceen.dart';
+import 'package:fastbagproject/view_model/auth_view_model.dart';
+import 'package:fastbagproject/view_model/category_view_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +31,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => CategoryViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,4 +1,5 @@
 
+import 'package:fastbagproject/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
   void _verifyOtp() {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final authProvider = Provider.of<AuthViewModel>(context, listen: false);
     authProvider.verifyOtp(widget.mobileNumber, _otpController.text.trim()).then((_) {
       print("Verification status: ${authProvider.isVerified}");
       if (authProvider.isVerified) { // Ensure user is verified before navigation

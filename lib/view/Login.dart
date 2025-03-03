@@ -1,6 +1,6 @@
 
-import 'package:fastbagproject/view/home.dart';
 import 'package:fastbagproject/view/widget/bottom_nav_bar.dart';
+import 'package:fastbagproject/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _selectedCountryCode = "+91"; // Default India code
 
   void _sendOtp() {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final authProvider = Provider.of<AuthViewModel>(context, listen: false);
     final mobile = '$_selectedCountryCode${_phoneController.text.trim()}';
 
     if (_phoneController.text.isEmpty || _phoneController.text.length < 10) {

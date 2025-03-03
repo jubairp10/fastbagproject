@@ -1,3 +1,4 @@
+import 'package:fastbagproject/view_model/auth_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -113,7 +114,7 @@ class _AccountState extends State<Account> {
                 leading: Icon(Icons.logout, color: Colors.grey[600]),
                 title: const Text("Logout", style: TextStyle(fontSize: 18, color: Colors.grey)),
                 onTap: (){
-                  Provider.of<AuthProvider>(context, listen: false).logout();
+                  Provider.of<AuthViewModel>(context, listen: false).logout();
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => LoginScreen()),
