@@ -1,11 +1,9 @@
 
+import 'package:fastbagproject/view/widget/bottom_nav_bar.dart';
 import 'package:fastbagproject/view_model/auth_view_model.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pinput/pinput.dart';
-import '../model/service/auth_provider.dart';
-import 'home.dart';
 
 
 class OtpVerificationScreen extends StatefulWidget {
@@ -50,7 +48,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => BottomNavExample()),
                 (route) => false,
         );
       }else {

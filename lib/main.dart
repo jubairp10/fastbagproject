@@ -1,9 +1,8 @@
-import 'package:fastbagproject/model/service/auth_provider.dart';
-import 'package:fastbagproject/model/service/category_provider.dart';
-import 'package:fastbagproject/view/Login.dart';
-import 'package:fastbagproject/view/home.dart';
-import 'package:fastbagproject/view/otp_verify.dart';
-import 'package:fastbagproject/view/splashsceen.dart';
+
+import 'package:fastbagproject/view/screens/Login.dart';
+import 'package:fastbagproject/view/screens/home.dart';
+import 'package:fastbagproject/view/screens/otp_verify.dart';
+import 'package:fastbagproject/view/screens/splashsceen.dart';
 import 'package:fastbagproject/view_model/auth_view_model.dart';
 import 'package:fastbagproject/view_model/category_view_model.dart';
 

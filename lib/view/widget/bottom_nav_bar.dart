@@ -63,11 +63,10 @@
 
 
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
-import 'package:fastbagproject/view/home.dart';
+import 'package:fastbagproject/view/screens/home.dart';
 import 'package:flutter/material.dart';
-
-import '../Cartpage.dart';
-import '../Profile.dart';
+import '../screens/Cartpage.dart';
+import '../screens/Profile.dart';
 
 
 
