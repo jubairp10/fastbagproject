@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'Login.dart';
+import '../login/view/Login.dart';
+
+
 
 class Splashsceen extends StatelessWidget {
   const Splashsceen({Key? key}) : super(key: key);

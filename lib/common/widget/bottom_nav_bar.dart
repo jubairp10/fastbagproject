@@ -62,13 +62,14 @@
 // }
 
 
+
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
-import 'package:fastbagproject/view/screens/home.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../screens/Cartpage.dart';
-import '../screens/Profile.dart';
 
-
+import '../../modules/cart/view/Cartpage.dart';
+import '../../modules/home/view/home.dart';
+import '../../modules/profile/view/Profile.dart';
 
 class BottomNavExample extends StatefulWidget {
   @override

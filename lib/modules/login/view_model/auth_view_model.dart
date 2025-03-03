@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../model/service/api_services.dart';
+
+import '../repository/login_repository.dart';
+
+
+
 
 class AuthViewModel extends ChangeNotifier {
   bool _isOtpSent = false;
@@ -15,7 +19,7 @@ class AuthViewModel extends ChangeNotifier {
 
   Future<void> registerUser(String mobile) async {
     try {
-      bool success = await ApiService.registerUser(mobile);
+      bool success = await Apiservice.registerUser(mobile);
       if (success) {
         _isOtpSent = true;
         startResendTimer();
@@ -28,7 +32,7 @@ class AuthViewModel extends ChangeNotifier {
 
   Future<void> verifyOtp(String mobile, String otp) async {
     try {
-      bool success = await ApiService.verifyOtp(mobile, otp);
+      bool success = await Apiservice.verifyOtp(mobile, otp);
       if (success) {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString("user_mobile", mobile);

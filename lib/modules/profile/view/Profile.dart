@@ -1,9 +1,9 @@
-import 'package:fastbagproject/view_model/auth_view_model.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'Login.dart';
+import '../../login/view/Login.dart';
+import '../../login/view_model/auth_view_model.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);

@@ -1,9 +1,11 @@
 
-import 'package:fastbagproject/view/widget/bottom_nav_bar.dart';
-import 'package:fastbagproject/view_model/auth_view_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pinput/pinput.dart';
+
+import '../../../common/widget/bottom_nav_bar.dart';
+import '../view_model/auth_view_model.dart';
 
 
 class OtpVerificationScreen extends StatefulWidget {

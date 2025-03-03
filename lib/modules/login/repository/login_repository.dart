@@ -1,34 +1,16 @@
 import 'dart:convert';
+
+import '../../home/model/model_class.dart';
 import 'package:http/http.dart' as http;
-import '../model_class.dart';
+
+class Apiservice{
+  final  String baseUrl="https://fastbag.pythonanywhere.com";
 
 
-class ApiService {
-  static const String baseUrl = "https://fastbag.pythonanywhere.com";
 
-  // Fetch Categories
-  Future<List<Category>> fetchCategories() async {
-    final url = "$baseUrl/vendors/categories/view/";
-    try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        List data = json.decode(response.body);
-        return data.map((json) => Category.fromJson(json)).toList();
-      } else {
-        // Handle non-200 status codes
-        print('Failed to load categories');
-        return [];
-      }
-    } catch (e) {
-      print("Error fetching categories: $e");
-      return [];
-    }
-  }
 
-  // Register User
   static Future<bool> registerUser(String mobile) async {
-    final url = "$baseUrl/users/register/";
-
+    final url = "https://fastbag.pythonanywhere.com/users/register/";
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -48,7 +30,7 @@ class ApiService {
 
   // Verify OTP
   static Future<bool> verifyOtp(String mobile, String otp) async {
-    final url = "$baseUrl/users/login/";
+    final url = "https://fastbag.pythonanywhere.com/users/login/";
 
     try {
       final response = await http.post(

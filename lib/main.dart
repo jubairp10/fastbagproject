@@ -1,14 +1,16 @@
 
-import 'package:fastbagproject/view/screens/Login.dart';
-import 'package:fastbagproject/view/screens/home.dart';
-import 'package:fastbagproject/view/screens/otp_verify.dart';
-import 'package:fastbagproject/view/screens/splashsceen.dart';
-import 'package:fastbagproject/view_model/auth_view_model.dart';
-import 'package:fastbagproject/view_model/category_view_model.dart';
+import 'package:fastbagproject/modules/main/splashsceen.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'modules/home/view/home.dart';
+import 'modules/home/view_model/category_view_model.dart';
+import 'modules/login/view/Login.dart';
+import 'modules/login/view/otp_verify.dart';
+import 'modules/login/view_model/auth_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
