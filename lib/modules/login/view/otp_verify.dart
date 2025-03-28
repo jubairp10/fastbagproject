@@ -1,5 +1,8 @@
 
 
+import 'package:fastbagproject/constants/app_color.dart';
+import 'package:fastbagproject/constants/app_fonts.dart';
+import 'package:fastbagproject/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pinput/pinput.dart';
@@ -44,7 +47,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       print("Verification status: ${authProvider.isVerified}");
       if (authProvider.isVerified) { // Ensure user is verified before navigation
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login Successful')),
+          SnackBar(content: Text(registersucccess)),
         );
         print("Navigating to HomeScreen: ${authProvider.isVerified}");
 
@@ -55,12 +58,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
         );
       }else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('OTP verification failed.')),
+          SnackBar(content: Text(otpVerificationfailed)),
         );
       }
     }).catchError((error) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Invalid OTP')),
+        SnackBar(content: Text(otpField)),
       );
     });
   }
@@ -76,8 +79,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Text("Enter the 4-digit code sent to you at${widget.mobileNumber}",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+            Text("Enter the 4-digit code sent to you at\n${widget.mobileNumber}",
+                  style:MainFont(fontsize: 20, fontweight: FontWeight.w500, color: AppColors.black)),
               SizedBox(height: 5),
               const SizedBox(height: 20),
               Pinput(
@@ -87,17 +90,24 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 onCompleted: (pin) => _verifyOtp(),
               ),
               SizedBox(height: 20),
-              TextButton(
-                onPressed: _canResend ? () {} : null,
-                child: Text("I haven’t received a code (${_resendTime.toString().padLeft(2, '0')})"),
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.grey,
-                  disabledForegroundColor: Colors.grey,
+              Container(decoration: BoxDecoration(color: Color(0xFFEEEEEE),
+                borderRadius: BorderRadius.circular(20)
+              ),
+                child: TextButton(
+                  onPressed: _canResend ? () {} : null,
+                  child: Text("I haven’t received a code (${_resendTime.toString().padLeft(2, '0')})",
+                  style: MainFont(fontsize: 16, fontweight: FontWeight.w500, color: Colors.grey),),
+
                 ),
               ),
-              TextButton(
-                onPressed: () {}, // Implement login with password
-                child: Text("Log in with password"),
+              SizedBox(height: 10,),
+              Container(decoration: BoxDecoration(color: Color(0xFFEEEEEE),
+                  borderRadius: BorderRadius.circular(20)),
+
+                child: TextButton(
+                  onPressed: () {}, // Implement login with password
+                  child: Text("Log in with password",style: MainFont(fontsize: 16, fontweight: FontWeight.w500, color: AppColors.black),),
+                ),
               ),
               Spacer(),
           Row(
@@ -110,18 +120,15 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ElevatedButton(
                     onPressed: _verifyOtp,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: AppColors.switchcolor,
                       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                     ),
-                    child: Text("Verify", style: TextStyle(color: Colors.white)),
+                    child: Text("Verify", style: MainFont(fontsize: 18, fontweight: FontWeight.w700, color: AppColors.white)),
                   ),
                 ],
               ),
               const SizedBox(height: 20),
-              // ElevatedButton(
-              //   onPressed: _verifyOtp,
-              //   child: const Text("Verify"),
-              // ),
+
             ],
           ),
         ),

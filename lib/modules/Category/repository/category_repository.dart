@@ -1,15 +1,16 @@
 import 'dart:convert';
+import 'package:fastbagproject/constants/appurls.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/model_class.dart';
 
 class HomeApiservices{
 
-  static const String baseUrl = "https://fastbag.pythonanywhere.com";
+
 
   // Fetch Categories
   Future<List<Category>> fetchCategories() async {
-    final url = "$baseUrl/vendors/categories/view/";
+    final url = "${AppUrls.baseUrl}/vendors/categories/view/";
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {

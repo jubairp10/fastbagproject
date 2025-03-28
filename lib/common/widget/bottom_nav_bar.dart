@@ -64,11 +64,12 @@
 
 
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
+import 'package:fastbagproject/modules/shop/view/shop.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../modules/Category/view/category_home.dart';
 import '../../modules/cart/view/Cartpage.dart';
-import '../../modules/home/view/home.dart';
 import '../../modules/profile/view/Profile.dart';
 
 class BottomNavExample extends StatefulWidget {
@@ -82,10 +83,11 @@ class _BottomNavExampleState extends State<BottomNavExample> {
   final PageController _pageController = PageController();
 
   final List<Widget> _pages = [
-    HomeScreen(),
-    HomeScreen(),
-    CartPage(),
-    Account(),
+    CatecoryHomeScreen(),
+    Shop(),
+    CatecoryHomeScreen(),
+    CatecoryHomeScreen(),
+    Profile(),
   ];
 
   @override
@@ -100,7 +102,7 @@ class _BottomNavExampleState extends State<BottomNavExample> {
         blurOpacity: 10,
         blurFilterX: .5,
         blurFilterY: 10,
-        bottomBarHeight: 12,
+        bottomBarHeight: 10,
         elevation: 0,
         notchBottomBarController: _controller, // ✅ Corrected this
         notchColor: Colors.blue,
@@ -110,22 +112,24 @@ class _BottomNavExampleState extends State<BottomNavExample> {
           BottomBarItem( // ✅ Use BottomBarItem
             inActiveItem: Icon(Icons.home, color: Colors.grey),
             activeItem: Icon(Icons.home, color: Colors.white),
-            itemLabel: 'Home',
+
+          ),
+          BottomBarItem(
+            inActiveItem:Icon(Icons.store,color: Colors.grey),
+            activeItem:Icon(Icons.store,color: Colors.grey),
+
           ),
           BottomBarItem(
             inActiveItem: Icon(Icons.category, color: Colors.grey),
             activeItem: Icon(Icons.category, color: Colors.white),
-            itemLabel: 'Categories',
+
           ),
-          BottomBarItem(
-            inActiveItem: Icon(Icons.shopping_cart, color: Colors.grey),
-            activeItem: Icon(Icons.shopping_cart, color: Colors.white),
-            itemLabel: 'Cart',
-          ),
+         BottomBarItem(inActiveItem: Icon(Icons.fastfood,color: Colors.grey), activeItem: Icon(Icons.fastfood, color: Colors.white),
+         ),
           BottomBarItem(
             inActiveItem: Icon(Icons.person, color: Colors.grey),
             activeItem: Icon(Icons.person, color: Colors.white),
-            itemLabel: 'Profile',
+
           ),
         ],
         onTap: (index) {

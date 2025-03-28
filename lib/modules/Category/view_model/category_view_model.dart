@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/model_class.dart';
-import '../repository/home_repository.dart';
+import '../repository/category_repository.dart';
 
 class CategoryViewModel extends ChangeNotifier {
   final HomeApiservices _apiService = HomeApiservices();
@@ -20,7 +20,7 @@ class CategoryViewModel extends ChangeNotifier {
     try {
       _categories = await _apiService.fetchCategories();
     } catch (e) {
-      // Handle errors properly
+
       print('Error fetching categories: $e');
     }
     _isLoading = false;

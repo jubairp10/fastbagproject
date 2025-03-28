@@ -1,5 +1,9 @@
 
+import 'package:fastbagproject/constants/app_color.dart';
+import 'package:fastbagproject/constants/app_fonts.dart';
+import 'package:fastbagproject/constants/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -23,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (_phoneController.text.isEmpty || _phoneController.text.length < 10) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter a valid phone number')),
+        SnackBar(content: Text(phonefieldrequired)),
       );
       return;
     }
@@ -47,71 +51,89 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-               SizedBox(height: 100),
-              Center(
-                child: Text(
-                  'Login or create an account',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        body: SingleChildScrollView( // Wrap with SingleChildScrollView
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SizedBox(height: 50),
+                Container(
+                  height: 500,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          'Login or create an account',
+                          style: LoginFont(fontsize: 50, fontweigt: FontWeight.w400, color: AppColors.black),
+                        ),
+                      ),
+                      SizedBox(height: 150),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: IntlPhoneField(
+                          controller: _phoneController,
+                          decoration: InputDecoration(
+                            labelText: 'Your Phone Number',
+                            labelStyle: Normalfont2(fontsize: 18, color: AppColors.black, fontweigt: FontWeight.w400),
+                            border: InputBorder.none, // Removes the default underline
+                            counterText: '', // Removes the character counter
+                          ),
+                          dropdownIcon: Icon( Icons.arrow_drop_down,
+                            size: 20,),
+                          dropdownTextStyle: Normalfont2(fontsize: 18, color: AppColors.black, fontweigt: FontWeight.w400),
+                          initialCountryCode: 'IN',
+                          enabled: true, // Disables the entire field, including the country selector
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly, // Allows only digits
+                            // FilteringTextInputFormatter.deny(RegExp(r'^0+')), // Prevents leading zeros
+                          ],
+                          onChanged: (phone) {
+                            _selectedCountryCode = phone.countryCode;
+                          },
+                        )
+
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IntlPhoneField(
-                  controller: _phoneController,
-                  decoration: InputDecoration(labelText: 'Your Phone Number'),
-                  initialCountryCode: 'IN',
-                  onChanged: (phone) {
-                    _selectedCountryCode = phone.countryCode;
-                  },
-                ),
-              ),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavExample()));
-                },
-                child: const Text('Continue'),
-              ),
-              Expanded(
-                child: Column(
+                const SizedBox(height: 150),
+               
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-      
-                    Spacer(), // Pushes the following content to the bottom
-                    Text('By clicking "Continue" you agree with', style: TextStyle(fontSize: 16, color: Colors.grey)),
+                    Text('By clicking "Continue" you agree with',
+                      style: Normalfont(fontsize: 16, fontweigt: FontWeight.w700, color: Colors.grey),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Our ', style: TextStyle(fontSize: 16, color: Colors.grey)),
+                        Text('Our ', style: Normalfont(fontsize: 16, fontweigt: FontWeight.w700, color: Colors.grey),),
                         TextButton(
                           onPressed: () {
-
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpVerificationScreen(mobileNumber: 'mobile_number')));
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => OtpVerificationScreen(mobileNumber: 'mobile_number')));
                           },
-                          child: Text('Terms and Conditions', style: TextStyle(fontSize: 16, color: Colors.black)),
+                          child: Text('Terms and Conditions', style: Normalfont(fontsize: 16, fontweigt: FontWeight.w700, color: AppColors.black),
                         ),
-                      ],
+                        )],
                     ),
                     const SizedBox(height: 10),
-                    InkWell(
+                    GestureDetector(
                       onTap: _sendOtp,
                       child: Container(
-                        height: 50,
-                        width: double.infinity,
+                        height: 56,
+                        width: 363.71,
                         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(20)),
-                        child: Center(child: Text('Continue', style: TextStyle(fontSize: 16, color: Colors.white))),
+                        decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(60)),
+                        child: Center(child: Text('Continue', style:Normalfont2(fontsize: 16, fontweigt: FontWeight.w700, color: Colors.white))),
                       ),
                     ),
                     const SizedBox(height: 24),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
